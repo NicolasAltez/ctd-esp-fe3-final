@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
 const Card = ({ name, username, id, imageUrl }) => {
-  const { state, dispatch } = useContext(ContextGlobal);
+  const { state, dispatch , addFavorite, removeFavorite} = useContext(ContextGlobal);
+  const isFavorite = state.favorites.some(dentist => dentist.id === id);
 
-  const addFav = () => {
-    const favs = JSON.parse(localStorage.getItem('favs')) || [];
-    const newFav = { name, username, id, imageUrl };
-    if (!favs.some(fav => fav.id === id)) {
-      favs.push(newFav);
-      localStorage.setItem('favs', JSON.stringify(favs));
-      dispatch({ type: 'SET_DENTISTS', payload: [...state.dentists] });
+  const handleFavorite = () => {
+    const dentist = {id, name, username};
+    if (isFavorite){
+      removeFavorite(id);
+    }else{
+      addFavorite(dentist);
     }
   };
 
@@ -23,8 +23,11 @@ const Card = ({ name, username, id, imageUrl }) => {
       <h2>{name}</h2>
       <h3>{username}</h3>
       <p>ID: {id}</p>
-      <button onClick={addFav} className="favButton">
-        Add fav
+      <button
+        onClick={handleFavorite}
+        className={`favButton ${isFavorite ? 'remove' : ''}`}
+      >
+        {isFavorite ? 'Remove from favs' : 'Add fav'}
       </button>
     </div>
   );
