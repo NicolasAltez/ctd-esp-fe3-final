@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import { createRoot } from 'react-dom/client';
 import App from './App';
+import { ContextProvider } from './Components/utils/global.context';
+import './styles/main.scss';
 
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-      <App/>
-  </React.StrictMode>
+  <ContextProvider>
+    <App />
+  </ContextProvider>
 );
-
-
