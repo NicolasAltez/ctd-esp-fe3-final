@@ -1,0 +1,33 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $background-light;
+    padding: 1rem 2rem;
+    @include box-shadow(0, 2px, 5px, rgba(0, 0, 0, 0.1));
+  }
+  
+  nav a {
+    color: $text-light;
+    font-weight: bold;
+    transition: color 0.3s;
+  
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  
+  nav button {
+    background-color: $primary-color;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  

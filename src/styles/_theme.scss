@@ -1,0 +1,37 @@
+.dark {
+    background-color: $background-dark;
+    color: $text-dark;
+  
+    nav {
+      background-color: darken($background-dark, 10%);
+    }
+  
+    nav a {
+      color: $text-dark;
+    }
+  
+    nav button {
+      background-color: $primary-color;
+      color: $text-dark;
+    }
+  
+    footer {
+      background-color: darken($background-dark, 10%);
+    }
+  
+    .card {
+      background-color: darken($background-dark, 10%);
+      color: $text-dark;
+      border: 0.5px solid $hover-color;
+  
+      &:hover {
+        border: 0.5px solid lighten($hover-color, 20%);
+      }
+  
+      .favButton {
+        background-color: $hover-color;
+        color: $text-dark;
+      }
+    }
+  }
+  
