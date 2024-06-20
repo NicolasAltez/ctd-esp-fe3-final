@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
 const Card = ({ name, username, id, imageUrl }) => {
-  const { state, dispatch , addFavorite, removeFavorite} = useContext(ContextGlobal);
+  const { state, addFavorite, removeFavorite} = useContext(ContextGlobal);
+  const navigate = useNavigate();
   const isFavorite = state.favorites.some(dentist => dentist.id === id);
 
   const handleFavorite = () => {
@@ -13,6 +14,10 @@ const Card = ({ name, username, id, imageUrl }) => {
     }else{
       addFavorite(dentist);
     }
+  };
+
+  const handleDetails = () => {
+    navigate(`/dentist/${id}`);
   };
 
   return (
@@ -29,6 +34,7 @@ const Card = ({ name, username, id, imageUrl }) => {
       >
         {isFavorite ? 'Remove from favs' : 'Add fav'}
       </button>
+      <button onClick={handleDetails} className="details-button">Dentist details</button>
     </div>
   );
 };

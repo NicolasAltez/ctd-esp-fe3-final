@@ -1,19 +1,41 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ContextGlobal } from '../Components/utils/global.context';
+import { fetchDentistById } from '../services/api.js';
 
+const DentistDetail = () => {
+  const { id } = useParams();
+  const { state } = useContext(ContextGlobal);
+  const [dentist, setDentist] = useState(null);
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+  useEffect(() => {
+    const getDentist = async () => {
+      try {
+        const data = await fetchDentistById(id);
+        setDentist(data);
+      } catch (error) {
+        console.error('Error fetching dentist data:', error);
+      }
+    };
 
-const Detail = () => {
- 
-  // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
+    getDentist();
+  }, [id]);
+
+  if (!dentist) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <>
-      <h1>Detail Dentist id </h1>
-      {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
-      {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-    </>
-  )
-}
+    <div className={`dentist-detail-container ${state.theme === 'dark' ? 'dark' : ''}`}>
+      <h1 className={state.theme === 'dark' ? 'dark' : ''}>Detalle Del Dentista</h1>
+      <div className={`dentist-detail ${state.theme === 'dark' ? 'dark' : ''}`}>
+        <img src="../images/doctor.jpg" alt={`${dentist.name}`} className="card-img" />
+        <h2>{dentist.name}</h2>
+        <p><strong>Email:</strong> {dentist.email}</p>
+        <p><strong>Telefono:</strong> {dentist.phone}</p>
+      </div>
+    </div>
+  );
+};
 
-export default Detail
+export default DentistDetail;

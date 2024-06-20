@@ -84,6 +84,12 @@ form{
   border: 0.5px solid rgb(206, 217, 142);
 }
 
+.card-img{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
 .card-grid{
   display: flex;
   justify-content: space-evenly;
