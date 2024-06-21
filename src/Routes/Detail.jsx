@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ContextGlobal } from '../Components/utils/global.context';
 import { fetchDentistById } from '../services/api.js';
 
@@ -33,6 +33,7 @@ const DentistDetail = () => {
         <h2>{dentist.name}</h2>
         <p><strong>Email:</strong> {dentist.email}</p>
         <p><strong>Telefono:</strong> {dentist.phone}</p>
+        <Link to="/" className="back-button">Volver al inicio</Link>
       </div>
     </div>
   );

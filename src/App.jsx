@@ -8,6 +8,8 @@ import Contact from "./Routes/Contact";
 import Favs from "./Routes/Favs";
 import DentistDetail from "./Routes/Detail";
 import { ContextGlobal } from "./Components/utils/global.context";
+import './Components/utils/routes'
+import { routes } from "./Components/utils/routes";
 
 
 
@@ -18,10 +20,10 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/favs" element={<Favs />} />
-          <Route path="/dentist/:id" element={<DentistDetail />} />
+          <Route path={routes.home} element={<Home />} />
+          <Route path={routes.contact} element={<Contact />} />
+          <Route path={routes.favs} element={<Favs />} />
+          <Route path={routes.dentistDetail} element={<DentistDetail />} />
         </Routes>
         <Footer />
       </Router>
